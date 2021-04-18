@@ -1,0 +1,52 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    
+    <main>
+        <% if(cart.length > 0) { %>
+            
+            <ul>
+            <% cart.forEach((p) => { %>
+                <div>
+                    <p><%=p.title %> - Product ID# <%=p.productId%> - (x <%=p.quantity%>)</p>
+                    <img src="<%=p.imageUrl%>" width="400px" height="250px">
+                    <h3>Price: $ <%=p.price%></h3>
+                </div>                    
+            <% }) %>
+            </ul>
+            
+        <% } else { %>
+            <h1>No Products Yet!</h1>
+        <% } %>
+        
+        <hr>
+        <div class="centered">
+            <h2>TOTAL: $ <%=cartTotal%></h2>
+            <%if(cartTotal > 0){%>
+                <button id="order-btn" class="btn">Complete Order</button> 
+                
+                <script nonce="<%=nonce%>" src="https://js.stripe.com/v3/"></script>
+                <script nonce="<%=nonce%>">
+                    const orderBtn = document.getElementById('order-btn')
+
+                    //const stripe = Stripe('pk_test_51IDkDsArv1QrI4Bx0FZSUZfasfwxL6uVpPllkXwNeieHKwrhe7RFNzcgiRnHHN4NCryij7rCucqy02WQsDml9l5p00r1PqEsB3');
+                    const stripe = Stripe('pk_test_51IDkDsArv1QrI4Bx0FZSUZfasfwxL6uVpPllkXwNeieHKwrhe7RFNzcgiRnHHN4NCryij7rCucqy02WQsDml9l5p00r1PqEsB3')
+                    console.log('Stripe Loaded In')
+
+                    const onStripeRedirect =() =>{
+                        console.log('Should sent to stripe')
+                        
+                        stripe.redirectToCheckout({
+                            sessionId: '<%=sessionId%>'
+                        })
+                        
+                    }
+
+                    orderBtn.addEventListener('click',onStripeRedirect)
+                </script>
+                 
+            <%}%>
+        </div>
+    </main>
+<%- include('../includes/end.ejs') %>

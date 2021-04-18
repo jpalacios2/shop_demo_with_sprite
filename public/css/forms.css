@@ -1,0 +1,31 @@
+
+.product-form{
+    width: 20rem;
+    max-width: 90%;
+    margin: auto;
+}
+
+.form-control{
+    margin: 1rem 0;
+}
+
+.form-control label,
+.form-control input,
+.form-control textarea{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+
+}
+
+.form-control input,
+.form-control textarea{
+    border: solid hsl(59, 100%, 34%)  1px;
+    margin-bottom: 2px;
+    border-radius: 4px;
+}
+
+.form-control input:focus,
+.form-control textarea:focus {
+    outline-color: #00695c;
+}

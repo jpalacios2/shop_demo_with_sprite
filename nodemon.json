@@ -1,0 +1,10 @@
+{
+    "env":{
+        "MONGO_USER":"mongodb+srv://user01",
+        "MONGO_PASSWORD":"65yDqHnEm3xhbjP8",
+        "MONGO_DEFAULT_DB":"shop?retryWrites=true&w=majority",
+        "DEFAULT_PORT": "8080",
+        "STRIPE_KEY": "sk_test_51IDkDsArv1QrI4Bxo8tzPIuZIExksQ5wl9gvNw4GQa2MJwIaqbL30YNB9S2FKr3qfkESfg52SncTP54XadPqbb2Q00LwUHefXr",
+        "SENDINBLUE_KEY": "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"
+    }
+}

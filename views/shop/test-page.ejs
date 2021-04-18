@@ -1,0 +1,27 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="main-wrapper">
+        <h1>Welcome Home!</h1>
+
+        <form action="/add-user" method="POST" style="text-align: center;">
+            <input name="email" type="text" placeholder="enter an email to register">
+            <input name="userName" type="text" placeholder="enter a username to register">
+
+            <button type="submit">SUBMIT</button>
+        </form>
+        <hr>
+        <h2>Users</h2>
+        <ul>
+            <% if(users.length > 0) { %>
+                <% for(let u of users){ %>
+                    <li><a href="/user/<%=u._id%>"><%=u.userName%> email: <%=u.email%></a></li>
+                <%}%>
+            <% } else { %>
+                <h2>No Users Added Yet!</h2>
+            <% } %>
+            
+        </ul>
+    </main>
+<%- include('../includes/end.ejs') %>

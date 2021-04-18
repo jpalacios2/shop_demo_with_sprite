@@ -1,0 +1,29 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <% if(orders.length <= 0) { %>
+            <h1>Nothing to see!</h1>
+        <% } else { %>
+           <ul>
+            <% orders.forEach(o => { %>
+                <h3>Order ID#  <%=o._id%></h3>
+                <h3>Purchased on  <%=o.purchaseTime%></h3>
+                
+                <ul>
+                    <%o.cartItems.forEach(i => {%>
+                        <P><%=i.title%>: $ <%=i.price%></p>
+                        <P>Quantity: <%=i.quantity%></p>
+                    <% }) %>
+                </ul>
+                <h2>Total: $ <%=o.orderTotal%></h2>
+                <a href="/orders/<%=o._id%>">PDF Invoice</a>
+                <hr>
+            <% }) %>
+            
+           </ul>
+        <% } %>
+    </main>
+
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,28 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="main-wrapper">
+        <div>
+            <h1>Welcome!</h1>
+            <h2>Don't miss out on today's deals, regiseter to shop!</h2>
+        </div>
+        
+
+        <hr>
+        <h2>Products</h2>
+
+        <div>
+            <% if(allProds.length > 0) { %> 
+                <% allProds.forEach((prod)=>{ %>
+                    <div class="product-demo">
+                        <h2><%=prod.title%></h2>
+                        <img class="product-demo__image" src="<%=prod.imageUrl%>">
+                    </div>
+                    <%  }) %>
+            <% } %>
+            
+        </div>
+        
+    </main>
+<%- include('../includes/end.ejs') %>

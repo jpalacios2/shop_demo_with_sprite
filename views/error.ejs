@@ -1,0 +1,12 @@
+<%- include('includes/head.ejs') %>
+</head>
+<body>
+    <%- include('includes/navigation.ejs') %>
+    <main class="main-wrapper">
+        <% if(errorMessage !== null) { %>
+            <h1>Error: <%=errorMessage%></h1>
+        <% } else{ %>
+            <h1>404 ERROR - PAGE NOT FOUND</h1>
+        <% } %>
+    </main>
+<%- include('includes/end.ejs') %>

@@ -1,0 +1,47 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    
+    
+    <main>
+        <% if(cart.length > 0) { %>
+            
+            <ul>
+            <% cart.forEach((p) => { %>
+                <div>
+                    <p><%=p.title %> - Product ID# <%=p.productId%> - (x <%=p.quantity%>)</p>
+                    <img src="<%=p.imageUrl%>" width="400px" height="250px">
+                    <h3>Price: $ <%=p.price%></h3>
+                </div>
+                <form action="/cart-delete-item" method="POST">
+                    <input type="hidden" name="id" value="<%=p.productId%>">
+                    <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                    <button type="submit">Remove-Item</button>
+                </form>
+                    
+            <% }) %>
+            </ul>
+            
+        <% } else { %>
+            <h1>No Products Yet!</h1>
+        <% } %>
+        <h2>TOTAL: $ <%=cartTotal%></h2>
+        <hr>
+        <div class="centered">
+            <!--
+            <form action="/create-order" method="POST">
+                <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+                <button type="submit">Check Out</button>
+            </form>
+            -->
+            <%if(cartTotal > 0) {%>
+                <div><a href="/checkout">Proceed to checkout</a></div>
+                <div><a href="/delete-cart">Delete Cart</a></div>
+            <%}%>
+        </div>
+        
+    </main>
+    
+
+<%- include('../includes/end.ejs') %>

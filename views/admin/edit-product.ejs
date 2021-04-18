@@ -1,0 +1,79 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/product.css">
+</head>
+<body>
+
+    <%- include('../includes/navigation.ejs') %>
+    <main class="main-wrapper">
+        <form class="product-form" action="<% if(editing){ %> /admin/edit-product <% }else{ %> /admin/add-product <% } %> " method="POST" enctype="multipart/form-data">
+            <% if(editing) { %> <input type="hidden" name="id" value="<%=product._id%>"> <%}%>
+            <div class="form-control">
+                <label for="title" >Title</label>
+                <input 
+                    value='<%if(editing){%><%=product.title%><%}else{%><%=values.title%><%}%>' 
+                    id="title" 
+                    name="productName" 
+                    type="text" 
+                    placeholder="enter product name"
+                >
+            </div>
+
+            <!--
+            <div class="form-control">
+                <label for="imageUrl">Image URL</label>
+                <input 
+                    value='<%if(editing){%><%=product.imageUrl%><%}else{%><%=values.imageUrl%><%}%>'
+                    id="imageUrl" 
+                    name="imageUrl" 
+                    type="text" 
+                    placeholder="enter image url"
+                >
+            </div>
+             -->
+             <div class="form-control">
+                <label for="image">Image</label>
+                <input 
+                    id="image" 
+                    name="image" 
+                    type="file" 
+                    placeholder="select an image"
+                >
+            </div>
+            <div class="form-control">
+                <label for="price" >Price</label>
+                <input 
+                    id="price" 
+                    name="price" 
+                    type="<% if(!editing) { %>text<% } else { %>text<% } %>" 
+                    placeholder="enter price" step="0.01" 
+                    value='<%if(editing){%><%=product.price%><%}else{%><%=values.price%><%}%>'>
+            </div>
+
+            <div class="form-control">
+                <label for="description" >Description</label>
+                <textarea 
+                    id="description" 
+                    name="description" 
+                    type="text" 
+                    placeholder="enter image description" 
+                    rows="5"
+                ><%if(editing){%><%=product.description%><%}else{%><%=values.description%><%}%></textarea>
+            </div>
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>"> 
+            <button type="submit"><% if(editing) { %> Update Product <% } else{ %> Add Product <% } %></button>
+        </form>
+        <div
+            style="color: red;" 
+            id="errorMessage" 
+            class="centered"
+        >
+            <h2><%=errorMessage%></h2>
+        </div>
+    </main>
+    <script>
+        setTimeout(function(){ 
+            document.getElementById("errorMessage").innerHTML = "";
+        }, 2500);
+    </script>
+<%- include('../includes/end.ejs') %>

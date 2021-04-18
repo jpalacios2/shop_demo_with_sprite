@@ -1,0 +1,13 @@
+<%- include('../includes/head.ejs') %>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main class="centered">
+        <h1>Unique Id: <%= user._id %></h1>
+        <hr>
+        <h2><%= user.userName %></h2>
+        <h2><%= user.email %></h2>
+        <a href="/">BACK</a>
+    </main>
+    
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,57 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <form class="login-form" action="/signup" method="POST">
+            <div class="form-control">
+                <label for="email">E-Mail</label>
+                <input
+                    id="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>" 
+                    type="email"    
+                    name="email" 
+                    id="email" 
+                    placeholder="enter your email" 
+                    value="<%=oldInput.email%>"
+                >
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input
+                    id="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"  
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    placeholder="create a password" 
+                    value="<%=oldInput.password%>"
+                >
+            </div>
+            <div class="form-control">
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                    id="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"   
+                    type="password" 
+                    name="confirmPassword" 
+                    id="confirmPassword" 
+                    placeholder="confirm password" 
+                    value="<%=oldInput.confirmPassword%>"
+                >
+            </div>
+            <input type="hidden" name="_csrf" value="<%=csrfToken%>">
+
+            <div class="bottomDiv">
+                <button id="btn" type="submit">Sign-up</button>
+            </div>
+        </form>
+        <div style="display: flex; justify-content: center;" id="errorMessage"><h1 style="color: blue;"><%=errorMessage%></h1></div>
+    </main>
+    <script>
+        setTimeout(function(){ 
+            document.getElementById("errorMessage").innerHTML = "";
+        }, 2500);
+    </script>
+<%- include('../includes/end.ejs') %>
